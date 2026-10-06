@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Responsive Internship Board - Explore and filter student tech internships in Full Stack Development, UI/UX, Data Analytics, and Cyber Security.">
+  <title>Responsive Internship Board | EdVyro</title>
+  
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Skip link for keyboard accessibility -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Header -->
+  <header class="app-header">
+    <div class="header-container">
+      <div class="brand">
+        <div class="brand-icon" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <h1 class="brand-title">EdVyro Internship Board</h1>
+          <p class="brand-subtitle">Discover and apply for verified student tech internships</p>
+        </div>
+      </div>
+      <div class="header-badge" aria-hidden="true">
+        <span class="pulse-dot"></span>
+        <span>Active Openings</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main id="main-content" class="main-content">
+    <div class="content-container">
+      
+      <!-- Filter & Search Controls Section -->
+      <section class="filters-section" aria-labelledby="filter-section-title">
+        <div class="section-header">
+          <h2 id="filter-section-title" class="section-title">Find Opportunities</h2>
+          <p class="section-description">Filter by domain, job title, location, mode, or specific technical skills.</p>
+        </div>
+
+        <form id="filter-form" class="filter-form" role="search" onsubmit="event.preventDefault();">
+          <div class="form-grid">
+            
+            <!-- Search Input -->
+            <div class="form-group search-group">
+              <label for="search-input" class="form-label">Search Internships</label>
+              <div class="input-wrapper">
+                <svg class="field-icon" aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+                <input 
+                  type="search" 
+                  id="search-input" 
+                  name="search"
+                  class="form-input" 
+                  placeholder="e.g. Frontend, React, Remote, Pune..." 
+                  autocomplete="off"
+                  spellcheck="false"
+                >
+                <button 
+                  type="button" 
+                  id="search-clear-btn" 
+                  class="field-clear-btn hidden" 
+                  aria-label="Clear search text"
+                  title="Clear search text"
+                >
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            <!-- Domain Select Dropdown -->
+            <div class="form-group select-group">
+              <label for="domain-select" class="form-label">Domain</label>
+              <div class="select-wrapper">
+                <svg class="field-icon" aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
+                </svg>
+                <select id="domain-select" name="domain" class="form-select">
+                  <option value="all">All Domains</option>
+                  <option value="Full Stack Development">Full Stack Development</option>
+                  <option value="UI/UX">UI/UX</option>
+                  <option value="Data Analytics">Data Analytics</option>
+                  <option value="Cyber Security">Cyber Security</option>
+                </select>
+                <svg class="chevron-icon" aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </div>
+            </div>
+
+            <!-- Reset Button -->
+            <div class="form-actions">
+              <button type="button" id="reset-filters-btn" class="btn btn-outline" title="Reset all search filters">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
+                  <path d="M3 3v5h5"></path>
+                </svg>
+                <span>Reset Filters</span>
+              </button>
+            </div>
+
+          </div>
+        </form>
+      </section>
+
+      <!-- Live Summary Bar -->
+      <section class="results-bar" aria-label="Search results summary">
+        <div class="results-meta">
+          <p id="results-count" class="results-count" role="status" aria-live="polite">
+            Loading internships...
+          </p>
+          <div id="active-filter-tags" class="active-filter-tags" aria-label="Active filters"></div>
+        </div>
+      </section>
+
+      <!-- Internship Listings Section -->
+      <section class="listings-section" aria-labelledby="listings-heading">
+        <h2 id="listings-heading" class="sr-only">Internship Listings</h2>
+
+        <!-- Loading State -->
+        <div id="loading-state" class="state-container loading-state" role="status" aria-live="polite">
+          <div class="spinner" aria-hidden="true"></div>
+          <p class="state-title">Loading internships...</p>
+          <p class="state-desc">Fetching the latest opportunities from records.</p>
+        </div>
+
+        <!-- Dynamic Cards Grid -->
+        <div id="internships-grid" class="cards-grid" aria-live="polite"></div>
+
+        <!-- Empty State -->
+        <div id="empty-state" class="state-container empty-state hidden" role="status">
+          <div class="state-icon" aria-hidden="true">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              <line x1="8" y1="11" x2="14" y2="11"></line>
+            </svg>
+          </div>
+          <h3 class="state-title">No internships found</h3>
+          <p class="state-desc">We couldn't find any opportunities matching your current search or domain filter criteria.</p>
+          <button type="button" id="empty-reset-btn" class="btn btn-primary">
+            Reset Filters
+          </button>
+        </div>
+
+        <!-- Error State -->
+        <div id="error-state" class="state-container error-state hidden" role="alert">
+          <div class="state-icon error-icon" aria-hidden="true">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="12" y1="8" x2="12" y2="12"></line>
+              <line x1="12" y1="16" x2="12.01" y2="16"></line>
+            </svg>
+          </div>
+          <h3 class="state-title">Failed to load internships</h3>
+          <p id="error-message" class="state-desc">An error occurred while reading internship records. Please check your network connection and try again.</p>
+          <button type="button" id="retry-btn" class="btn btn-primary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"></path>
+            </svg>
+            <span>Retry Loading</span>
+          </button>
+        </div>
+
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="app-footer">
+    <div class="footer-container">
+      <p class="footer-text">&copy; EdVyro Full Stack Internship Program &bull; Responsive Internship Board</p>
+      <p class="footer-subtext">Built with semantic HTML5, CSS3, and Vanilla JavaScript</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
